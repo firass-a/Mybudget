@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mybudget/views/welcomepage.dart';
 
 class AnimatedButton extends StatelessWidget {
   const AnimatedButton({super.key, required this.visiblet});
@@ -18,11 +19,16 @@ class AnimatedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WelocmePage()),
+            );
+          },
           child: const Padding(
             padding: EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
-              "Let's get started",
+              "How much money do you have ?",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
