@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mybudget/views/infoscreen.dart';
 import 'package:mybudget/widgets/animatedtext2.dart';
 
 class WelocmePage extends StatefulWidget {
@@ -188,7 +189,12 @@ class _WelocmePageState extends State<WelocmePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Infos()),
+                        );
+                      },
                       child: Text(
                         "Dont worry we got you !",
                         style: TextStyle(color: Colors.white, fontSize: 20),
