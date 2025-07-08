@@ -1,11 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 class AnimatedText2 extends StatelessWidget {
-  const AnimatedText2({
-    super.key,
-    required this.visiblet2,
-  });
+  const AnimatedText2({super.key, required this.visiblet2});
 
   final bool visiblet2;
 
@@ -31,10 +27,7 @@ class AnimatedText2 extends StatelessWidget {
             child: Text(
               "Mahfadhati will tell you!",
               textAlign: TextAlign.end,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-              ),
+              style: TextStyle(color: Colors.black, fontSize: 20),
             ),
           ),
         ),
@@ -43,15 +36,12 @@ class AnimatedText2 extends StatelessWidget {
   }
 }
 
-
-// Second Text shape 
+// Second Text shape
 class AnimatedFirst extends StatelessWidget {
-  const AnimatedFirst({
-    super.key,
-    required this.visiblet1,
-  });
+  const AnimatedFirst({super.key, required this.visiblet1 , required this.txt});
 
   final bool visiblet1;
+  final String txt;
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +58,10 @@ class AnimatedFirst extends StatelessWidget {
             topRight: Radius.circular(10),
           ),
         ),
-        child: const Padding(
+        child: Padding(
           padding: EdgeInsets.all(10.0),
           child: Text(
-            "Nice phone , can I buy it ?",
+            txt,
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
@@ -80,8 +70,7 @@ class AnimatedFirst extends StatelessWidget {
   }
 }
 
-
-//Animated Image 
+//Animated Image
 class AnimatedImage extends StatelessWidget {
   const AnimatedImage({
     super.key,
@@ -114,7 +103,7 @@ class AnimatedImage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          AnimatedFirst(visiblet1: visiblet1),
+          AnimatedFirst(visiblet1: visiblet1,txt: "Nice phone , can I buy it ?",),
           const SizedBox(height: 15),
           AnimatedText2(visiblet2: visiblet2),
         ],
@@ -122,5 +111,3 @@ class AnimatedImage extends StatelessWidget {
     );
   }
 }
-
-
