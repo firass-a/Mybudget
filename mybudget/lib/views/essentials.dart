@@ -11,6 +11,13 @@ class Essentials extends StatefulWidget {
 class _EssentialsState extends State<Essentials> {
   int currentStep = 1;
 
+  List<String> reasons = [
+    "💳 Drowning in debt",
+    "😓 I'm overwhelmed",
+    "🥴 Don't know where my money goes",
+    "💪 want to make the most out of my money",
+  ];
+
   void _incrementCounter() {
     if (currentStep <= 6) {
       setState(() {
@@ -49,9 +56,44 @@ class _EssentialsState extends State<Essentials> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(itemBuilder: (context, index) {
-                  
-                }),
+                child: ListView.builder(
+                  itemCount: reasons.length,
+                  itemBuilder: (context, index) {
+                    final reason = reasons[index];
+                    return GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 15, top: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.blueGrey[900],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            reason,
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.blueAccent,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      _incrementCounter();
+                    },
+                    icon: Icon(Icons.arrow_forward),
+                  ),
+                ),
               ),
             ],
           ),
