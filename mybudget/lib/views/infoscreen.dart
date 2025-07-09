@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mybudget/views/essentials.dart';
 
 class Infos extends StatelessWidget {
   const Infos({super.key});
@@ -40,12 +41,17 @@ class Infos extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Container(
-                  decoration: BoxDecoration( 
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.blueAccent,
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Essentials()),
+                      );
+                    },
                     icon: Icon(Icons.arrow_forward),
                   ),
                 ),
