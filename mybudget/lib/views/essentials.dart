@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
+import 'package:mybudget/views/nextpage.dart';
 
 class Essentials extends StatefulWidget {
   const Essentials({super.key});
@@ -61,7 +62,9 @@ class _EssentialsState extends State<Essentials> {
                   itemBuilder: (context, index) {
                     final reason = reasons[index];
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context , MaterialPageRoute(builder: (context)=>NextPage()));
+                      },
                       child: Container(
                         margin: EdgeInsets.only(bottom: 15, top: 15),
                         decoration: BoxDecoration(
