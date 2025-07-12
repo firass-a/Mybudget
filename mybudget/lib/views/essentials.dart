@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 import 'package:mybudget/providers/reasonsprovider.dart';
+import 'package:mybudget/widgets/reusablebutton.dart';
 
 // Define a provider for your step count
 final currentStepProvider = StateProvider<int>((ref) => 1);
@@ -80,19 +81,7 @@ class Essentials extends ConsumerWidget {
                   },
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.blueAccent,
-                  ),
-                  child: IconButton(
-                    onPressed: incrementCounter,
-                    icon: Icon(Icons.arrow_forward, color: Colors.white),
-                  ),
-                ),
-              ),
+              ReusableBt(),
             ],
           ),
         ),
@@ -100,3 +89,4 @@ class Essentials extends ConsumerWidget {
     );
   }
 }
+
