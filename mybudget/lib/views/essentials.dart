@@ -1,36 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
-import 'package:mybudget/views/nextpage.dart';
+import 'package:mybudget/providers/reasonsprovider.dart';
 
-class Essentials extends StatefulWidget {
+// Define a provider for your step count
+final currentStepProvider = StateProvider<int>((ref) => 1);
+
+class Essentials extends ConsumerWidget {
   const Essentials({super.key});
 
+ 
   @override
-  State<Essentials> createState() => _EssentialsState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentStep = ref.watch(currentStepProvider);
+    final reason = ref.watch(reasonsProvider);
 
-class _EssentialsState extends State<Essentials> {
-  int currentStep = 1;
-
-  List<String> reasons = [
-    "💳 Drowning in debt",
-    "😓 I'm overwhelmed",
-    "🥴 Don't know where my money goes",
-    "💪 want to make the most out of my money",
-  ];
-
-  void _incrementCounter() {
-    if (currentStep <= 6) {
-      setState(() {
-        currentStep++;
-      });
+    void incrementCounter() {
+      if (currentStep < 6) {
+        ref.read(currentStepProvider.notifier).state++;
+      }
     }
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: Padding(
           padding: EdgeInsets.all(15.0),
           child: Column(
@@ -42,31 +35,35 @@ class _EssentialsState extends State<Essentials> {
                   progressType: LinearProgressBar.progressTypeLinear,
                   minHeight: 5,
                   progressColor: Colors.indigo[900],
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.grey,
                   currentStep: currentStep,
                 ),
               ),
               Center(
                 child: Text(
-                  "What brings you to mahfadati today ? ",
+                  "What brings you to mahfadati today ?",
                   style: TextStyle(
                     fontSize: 25,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: reasons.length,
+                  itemCount: reason.length,
                   itemBuilder: (context, index) {
-                    final reason = reasons[index];
+                    final rsn = reason[index];
                     return GestureDetector(
                       onTap: () {
-                        Navigator.push(context , MaterialPageRoute(builder: (context)=>NextPage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => rsn.page),
+                        );
                       },
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 15, top: 15),
+                        margin: EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: Colors.blueGrey[900],
@@ -74,7 +71,7 @@ class _EssentialsState extends State<Essentials> {
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
-                            reason,
+                            rsn.text,
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                         ),
@@ -91,10 +88,8 @@ class _EssentialsState extends State<Essentials> {
                     color: Colors.blueAccent,
                   ),
                   child: IconButton(
-                    onPressed: () {
-                      _incrementCounter();
-                    },
-                    icon: Icon(Icons.arrow_forward),
+                    onPressed: incrementCounter,
+                    icon: Icon(Icons.arrow_forward, color: Colors.white),
                   ),
                 ),
               ),
